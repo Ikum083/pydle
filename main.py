@@ -17,6 +17,26 @@ class Wordle(ctk.CTk):
         self.geometry(window_size)
         self.title("Pydle")
         self.resizable(False, False)
+        self.columnconfigure(0, weight = 1)
+        self.rowconfigure(0, weight = 1)
+        
+        # frame to put entries
+        self.main_frame = ctk.CTkFrame(self, width = 400, height = 500)
+        self.main_frame.grid(row = 0, column = 0)
+        for a in range(5):
+            self.main_frame.grid_columnconfigure(a, weight = 1)
+        for b in range(6):
+            self.main_frame.grid_rowconfigure(b, weight = 1)
+
+        self.entries_list = []
+        for i in range(5):
+            row_entries = []
+            for j in range(6):
+                self.entries = ctk.CTkEntry(self.main_frame, width = 60, height = 60, placeholder_text = " ", font = ("Arial", 24), justify = "center")
+                self.entries.grid(row = j, column = i, padx = 15, pady = 15)
+                row_entries.append(self.entries)
+            self.entries_list.append(row_entries)
+
 
 if __name__ == "__main__":
     main = Wordle()
